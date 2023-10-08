@@ -8,6 +8,24 @@ CONFIG_FILE_PATH = os.path.join(ROOT_DIR,CONFIF_DIR,CONFIG_FILE_NAME)
 
 CURRENT_TIME_STAMP = f"{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
 
+DATABASE_NAME = "adult"
+
+COLUMN =   ['age',
+            'workclass',
+            'fnlwgt',
+            'education',
+            'education-num',
+            'marital-status',
+            'occupation',
+            'relationship',
+            'race',
+            'sex',
+            'capital-gain',
+            'capital-loss',
+            'hours-per-week',
+            'native-country',
+            'income']
+
 
 #training pipeline related variables
 
