@@ -81,16 +81,16 @@ class DataIngestion:
             ingested_test_file_path = os.path.join(ingested_test_dir,DATABASE_NAME+'.csv')
 
             logging.info(f"saving train data as csv")
-            train_df.to_csv(ingested_train_file_path)
+            train_df.to_csv(ingested_train_file_path,index=False)
             logging.info(f"train data saved successfully")
             logging.info(f"saving test data as csv")
-            test_df.to_csv(ingested_test_file_path)
+            test_df.to_csv(ingested_test_file_path,index=False)
             logging.info(f"test data saved successfully")
 
             data_ingestion_artifact = DataIngestionArtifact(is_ingested=True,
                                                             message="data ingestion completed",
-                                                            train_file_path=ingested_train_dir,
-                                                            test_file_path=ingested_test_dir)
+                                                            train_file_path=ingested_train_file_path,
+                                                            test_file_path=ingested_test_file_path)
             return data_ingestion_artifact
         except Exception as e:
             raise IncomeException(sys,e) from e

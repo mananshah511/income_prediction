@@ -1,7 +1,7 @@
 import os,sys
 from income.exception import IncomeException
 from income.loggers import logging
-from income.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig
+from income.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformConfig
 from income.constant import *
 from income.util.util import read_yaml
 
@@ -69,6 +69,40 @@ class Configuration:
             logging.info(f"data validation config : {data_validation_config}")
 
             return data_validation_config
+        except Exception as e:
+            raise IncomeException(sys,e) from e
+        
+    def get_data_transform_config(self)->DataTransformConfig:
+        try:
+            logging.info(f"get data transform config function started")
+            
+            artifact_dir = self.training_pipeline_config.artifact_dir
+
+            data_tranform_config = self.config_info[DATA_TRANSFORM_CONFIG_KEY]
+
+            data_transform_artifact_dir = os.path.join(artifact_dir,DATA_TRANSFORM_DIR,self.current_time_stamp)
+
+            transform_train_dir = os.path.join(data_transform_artifact_dir,data_tranform_config[DATA_TRANSFORM_TRAIN_DIR_KEY])
+
+            transform_test_dir = os.path.join(data_transform_artifact_dir,data_tranform_config[DATA_TRANSFORM_TEST_DIR_KEY])
+
+            graph_dir = os.path.join(data_transform_artifact_dir,data_tranform_config[DATA_TRANSFORM_GRAPH_DIR_KEY])
+
+            cluster_model_dir = os.path.join(data_transform_artifact_dir,data_tranform_config[DATA_TRANSFORM_CLUSTER_MODEL_DIR_KEY],
+                                             data_tranform_config[DATA_TRANSFORM_CLUSTER_MODEL_NAME_KEY])
+            
+            preprocessed_object_dir = os.path.join(data_transform_artifact_dir,data_tranform_config[DATA_TRANSFORM_PREPROCESSED_OBJECT_DIR_KEY],
+                                                   data_tranform_config[DATA_TRANSFORM_PREPROCESSED_OBJECT_FILE_NAME_KEY])
+            
+            data_tranform_config = DataTransformConfig(graph_save_dir=graph_dir,
+                                                        transform_train_dir=transform_train_dir,
+                                                        transform_test_dir=transform_test_dir,
+                                                        preprocessed_file_path=preprocessed_object_dir,
+                                                        cluster_model_file_path=cluster_model_dir)
+            
+            logging.info(f"data transform config : {data_tranform_config}")
+
+            return data_tranform_config
         except Exception as e:
             raise IncomeException(sys,e) from e
         
