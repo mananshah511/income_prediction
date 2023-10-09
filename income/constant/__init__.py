@@ -10,6 +10,8 @@ CURRENT_TIME_STAMP = f"{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
 
 DATABASE_NAME = "adult"
 
+NO_CLUSTER = 3
+
 COLUMN =   ['age',
             'workclass',
             'fnlwgt',
