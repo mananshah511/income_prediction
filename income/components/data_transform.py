@@ -224,7 +224,7 @@ class DataTransform:
             cluster_numbers = list(np.unique(np.array(test_predict)))
             logging.info(f"cluster numbers are : {cluster_numbers}")
 
-            logging.info(f"making csv files for train data cluster wise")
+            logging.info(f"making csv files for test data cluster wise")
 
             for cluster_number in cluster_numbers:
                 test_file_path = os.path.join(transform_test_folder,'test_cluster'+str(cluster_number)+'.csv')
@@ -235,7 +235,7 @@ class DataTransform:
                     for index in range(len(test_predict)):
                         if test_predict[index] == cluster_number:
                             csvwriter.writerow(test_df.iloc[index])
-            logging.info(f"csv files write for train data is completed")
+            logging.info(f"csv files write for test data is completed")
 
             return k_means
         except Exception as e:
