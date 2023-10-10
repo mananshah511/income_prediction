@@ -110,7 +110,7 @@ class ModelTrainer:
                                                         train_accuracy=train_accuracy,
                                                         test_accuracy=test_accuracy,
                                                         model_accuracy=model_accuracy)
-
+            return model_trainer_artifact
 
 
 

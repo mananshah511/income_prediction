@@ -1,7 +1,7 @@
 import os,sys
 from income.exception import IncomeException
 from income.loggers import logging
-from income.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformConfig,ModelTrainerConfig,ModelEvulationConfig
+from income.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformConfig,ModelTrainerConfig,ModelEvulationConfig,ModelPusherConfig
 from income.constant import *
 from income.util.util import read_yaml
 
@@ -151,6 +151,23 @@ class Configuration:
             logging.info(f"model evulation config : {model_evulation_config}")
 
             return model_evulation_config
+        except Exception as e:
+            raise IncomeException(sys,e) from e
+        
+    def get_model_pusher_config(self)->ModelPusherConfig:
+        try:
+            logging.info(f"get model puser config function started")
+            artifact_dir = self.training_pipeline_config.artifact_dir
+
+            model_pusher_config = self.config_info[MODEL_PUSHER_CONFIG_KEY]
+
+            export_model_dir = os.path.join(artifact_dir,MODEL_PUSHER_DIR,model_pusher_config[MODEL_PUSHER_EXPORT_MODEL_DIR_KEY])
+
+            model_pusher_config = ModelPusherConfig(export_dir_path=export_model_dir)
+
+            logging.info(f"model pusher config : {model_pusher_config}")
+
+            return model_pusher_config
         except Exception as e:
             raise IncomeException(sys,e) from e
         

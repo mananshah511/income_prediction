@@ -1,0 +1,9 @@
+cluster0:
+  best_model:
+    model_path: D:\projects\income_prediction\income\artifact\model_trainer\2023-10-10-11-15-13\cluster0\model.pkl
+cluster1:
+  best_model:
+    model_path: D:\projects\income_prediction\income\artifact\model_trainer\2023-10-10-11-15-13\cluster1\model.pkl
+cluster2:
+  best_model:
+    model_path: D:\projects\income_prediction\income\artifact\model_trainer\2023-10-10-11-15-13\cluster2\model.pkl

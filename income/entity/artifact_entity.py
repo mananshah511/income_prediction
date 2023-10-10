@@ -12,6 +12,10 @@ DataTransformArtifact = namedtuple("DataTransformArtifact",
 ModelEvulationArtifact = namedtuple("ModelEvulationConfig",
                                   ["is_model_accepted","evulation_model_file_path"])
 
+
 ModelTrainerArtifact = namedtuple("ModelArtifactConfig",
                                 ["is_trained","message","trained_model_path","train_accuracy","test_accuracy",
                                  "model_accuracy"])
+
+ModelPusherArtifact = namedtuple("ModelPusherArtifact",["export_dir_path"])
+
