@@ -1,7 +1,7 @@
 import os,sys
 from income.exception import IncomeException
 from income.loggers import logging
-from income.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformConfig,ModelTrainerConfig
+from income.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformConfig,ModelTrainerConfig,ModelEvulationConfig
 from income.constant import *
 from income.util.util import read_yaml
 
@@ -132,6 +132,25 @@ class Configuration:
             return model_trainer_config
             
 
+        except Exception as e:
+            raise IncomeException(sys,e) from e
+        
+    def get_model_evulation_config(self)->ModelEvulationConfig:
+        try:
+            logging.info(f"get model evulation config function started")
+            artifact_dir = self.training_pipeline_config.artifact_dir
+
+            model_evulation_config = self.config_info[MODEL_EVULATION_CONFIG_KEY]
+
+            model_evulation_artifact_dir = os.path.join(artifact_dir,MODEL_EVULATION_DIR)
+
+            model_evulation_file_path = os.path.join(model_evulation_artifact_dir,model_evulation_config[MODEL_EVULATION_FILE_NAME_KEY])
+
+            model_evulation_config = ModelEvulationConfig(evulation_file_path=model_evulation_file_path,
+                                                          time_stamp=self.current_time_stamp)
+            logging.info(f"model evulation config : {model_evulation_config}")
+
+            return model_evulation_config
         except Exception as e:
             raise IncomeException(sys,e) from e
         
