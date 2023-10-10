@@ -30,7 +30,7 @@ class ModelPusher:
                 export_dir_path = os.path.join(export_dir,'cluster'+str(cluster_number))
                 os.makedirs(export_dir_path,exist_ok=True)
                 shutil.copy(src = transform_train_models[cluster_number],dst=export_dir_path)
-                export_dir_list.append(export_dir_path)
+                export_dir_list.append(os.path.join(export_dir_path,train_file_name))
             logging.info(f"all models are copied to: {export_dir}")
             model_pusher_artifact = ModelPusherArtifact(export_dir_path=export_dir_list)
             return model_pusher_artifact

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Prediction Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+</style>
+<body>
+    <div class="container">
+        <h1>Income Prediction Form</h1>
+        <form id="prediction-form" action="{{ url_for('predict')}}" method="post">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+
+            <label for="workclass">Workclass:</label>
+            <select id="workclass" name="workclass" required>
+                <option value=" Private">Private</option>
+                <option value=" Self-emp-not-inc">Self-emp-not-inc</option>
+                <option value=" Self-emp-inc">Self-emp-inc</option>
+                <option value=" Federal-gov">Federal-gov</option>
+                <option value=" Local-gov">Local-gov</option>
+                <option value=" State-gov">State-gov</option>
+                <option value=" Without-pay">Without-pay</option>
+                <option value=" Never-worked">Never-worked</option>
+            </select><br>
+
+            <label for="fnlwgt">Final Weight:</label>
+            <input type="number" id="fnlwgt" name="fnlwgt" required><br>
+
+            <label for="education">Education Level:</label>
+            <select id="education" name="education" required>
+                <option value="13">Bachelors</option>
+                <option value="10">Some-college</option>
+                <option value="7">11th</option>
+                <option value="9">HS-grad</option>
+                <option value="15">Prof-school</option>
+                <option value="12">Assoc-acdm</option>
+                <option value="11">Assoc-voc</option>
+                <option value="5">9th</option>
+                <option value="4">7th-8th</option>
+                <option value="8">12th</option>
+                <option value="14">Masters</option>
+                <option value="2">1st-4th</option>
+                <option value="6">10th</option>
+                <option value="16">Doctorate</option>
+                <option value="3">5th-6th</option>
+                <option value="1">Preschool</option>
+            </select><br>
+
+            <label for="education-num">Education Number:</label>
+            <input type="number" id="education-num" name="education-num" required><br>
+
+
+            <label for="marital-status">Marital Status:</label>
+            <select id="marital-status" name="marital-status" required>
+                <option value=" Married-civ-spouse">Married-civ-spouse</option>
+                <option value=" Divorced">Divorced</option>
+                <option value=" ever-married">Never-married</option>
+                <option value=" Separated">Separated</option>
+                <option value=" Widowed">Widowed</option>
+                <option value=" Married-spouse-absent">Married-spouse-absent</option>
+                <option value=" Married-AF-spouse">Married-AF-spouse</option>
+            </select><br>
+
+            <label for="occupation">Occupation:</label>
+            <select id="occupation" name="occupation" required>
+                <option value=" Tech-support">Tech-support</option>
+                <option value=" Craft-repair">Craft-repair</option>
+                <option value=" Other-service">Other-service</option>
+                <option value=" Sales">Sales</option>
+                <option value=" Exec-managerial">Exec-managerial</option>
+                <option value=" Prof-specialty">Prof-specialty</option>
+                <option value=" Handlers-cleaners">Handlers-cleaners</option>
+                <option value=" Machine-op-inspct">Machine-op-inspct</option>
+                <option value=" Adm-clerical">Adm-clerical</option>
+                <option value=" Farming-fishing">Farming-fishing</option>
+                <option value=" Transport-moving">Transport-moving</option>
+                <option value=" Priv-house-serv">Priv-house-serv</option>
+                <option value=" Protective-serv">Protective-serv</option>
+                <option value=" Armed-Forces">Armed-Forces</option>
+            </select><br>
+
+            <label for="relationship">Relationship:</label>
+            <select id="relationship" name="relationship" required>
+                <option value=" Wife">Wife</option>
+                <option value=" Own-child">Own-child</option>
+                <option value=" Husband">Husband</option>
+                <option value=" Not-in-family">Not-in-family</option>
+                <option value=" Other-relative">Other-relative</option>
+                <option value=" Unmarried">Unmarried</option>
+            </select><br>
+
+            <label for="race">Race:</label>
+            <select id="race" name="race" required>
+                <option value=" White">White</option>
+                <option value=" Asian-Pac-Islander">Asian-Pac-Islander</option>
+                <option value=" Amer-Indian-Eskimo">Amer-Indian-Eskimo</option>
+                <option value=" Other">Other</option>
+                <option value=" Black">Black</option>
+            </select><br>
+
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex" required>
+                <option value=" Female">Female</option>
+                <option value=" Male">Male</option>
+            </select><br>
+
+            <label for="capital-gain">Capital Gain:</label>
+            <input type="number" id="capital-gain" name="capital-gain" required><br>
+
+            <label for="capital-loss">Capital Loss:</label>
+            <input type="number" id="capital-loss" name="capital-loss" required><br>
+
+            <label for="hours-per-week">Hours per Week:</label>
+            <input type="number" id="hours-per-week" name="hours-per-week" required><br>
+
+        <label for="native-country">Native Country:</label>
+            <select id="native-country" name="native-country" required>
+                <option value=" United-States">United States</option>
+                <option value=" Cambodia">Cambodia</option>
+                <option value=" England">England</option>
+                <option value=" Puerto-Rico">Puerto Rico</option>
+                <option value=" Canada">Canada</option>
+                <option value=" Germany">Germany</option>
+                <option value=" Outlying-US(Guam-USVI-etc)">Outlying US(Guam-USVI-etc)</option>
+                <option value=" India">India</option>
+                <option value=" Japan">Japan</option>
+                <option value=" Greece">Greece</option>
+                <option value=" South">South</option>
+                <option value=" China">China</option>
+                <option value=" Cuba">Cuba</option>
+                <option value=" Iran">Iran</option>
+                <option value=" Honduras">Honduras</option>
+                <option value=" Philippines">Philippines</option>
+                <option value=" Italy">Italy</option>
+                <option value=" Poland">Poland</option>
+                <option value=" Jamaica">Jamaica</option>
+                <option value=" Vietnam">Vietnam</option>
+                <option value=" Mexico">Mexico</option>
+                <option value=" Portugal">Portugal</option>
+                <option value=" Ireland">Ireland</option>
+                <option value=" France">France</option>
+                <option value=" Dominican-Republic">Dominican Republic</option>
+                <option value=" Laos">Laos</option>
+                <option value=" Ecuador">Ecuador</option>
+                <option value=" Taiwan">Taiwan</option>
+                <option value=" Haiti">Haiti</option>
+                <option value=" Columbia">Columbia</option>
+                <option value=" Hungary">Hungary</option>
+                <option value=" Guatemala">Guatemala</option>
+                <option value=" Nicaragua">Nicaragua</option>
+                <option value=" Scotland">Scotland</option>
+                <option value=" Thailand">Thailand</option>
+                <option value=" Yugoslavia">Yugoslavia</option>
+                <option value=" El-Salvador">El Salvador</option>
+                <option value=" Trinadad&Tobago">Trinidad & Tobago</option>
+                <option value=" Peru">Peru</option>
+                <option value=" Hong">Hong</option>
+                <option value=" Holand-Netherlands">Holand Netherlands</option>
+            </select><br>
+
+            <button type="submit">Predict Income</button>
+
+</form>
+<div class="container"><b>
+    {{output_text}}</b>
+</div>
+
+    <div class="container">
+        <h2>Income Model Training</h2>
+        <form id="income-train" action="{{ url_for('train')}}" method="post">
+                <button type="submit">Train</button>
+        </form>
+    <div class="container"><b>
+    {{prediction_text}}</b>
+    </div>
+</body>
+</html>

@@ -19,3 +19,7 @@ ModelTrainerArtifact = namedtuple("ModelArtifactConfig",
 
 ModelPusherArtifact = namedtuple("ModelPusherArtifact",["export_dir_path"])
 
+
+FinalArtifact = namedtuple("FinalArtifact",["ingested_train_data","preprocessed_model_path",
+                                            "cluster_model_path","export_dir_path"])
+

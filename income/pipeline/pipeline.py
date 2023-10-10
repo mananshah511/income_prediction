@@ -1,7 +1,7 @@
 import os,sys
 from income.loggers import logging
 from income.exception import IncomeException
-from income.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformArtifact,ModelTrainerArtifact,ModelEvulationArtifact,ModelPusherArtifact
+from income.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformArtifact,ModelTrainerArtifact,ModelEvulationArtifact,ModelPusherArtifact,FinalArtifact
 from income.config.configuration import Configuration
 from income.constant import *
 from income.components.data_ingestion import DataIngestion
@@ -10,6 +10,7 @@ from income.components.data_transform import DataTransform
 from income.components.model_trainer import ModelTrainer
 from income.components.model_evulation import ModelEvulation
 from income.components.model_pusher import ModelPusher
+import json
 
 class Pipeline:
     
@@ -80,5 +81,13 @@ class Pipeline:
             model_evulation_artifact = self.start_model_evulation(data_transform_artifact=data_transform_artifact,
                                                                   model_trainer_artifact=model_trainer_artifact)
             model_pusher_artifact = self.start_model_pusher(model_evulation_artifact=model_evulation_artifact)
+
+            final_artifact = FinalArtifact(ingested_train_data=data_ingestion_artifacrt.train_file_path,
+                                           preprocessed_model_path=data_transform_artifact.preprocessed_dir,
+                                           cluster_model_path=data_transform_artifact.cluster_model_dir,
+                                           export_dir_path=model_pusher_artifact.export_dir_path)
+            
+            with open('data.json', 'w') as json_obj:
+                json.dump(final_artifact._asdict(), json_obj)
         except Exception as e:
             raise IncomeException(sys,e) from e
