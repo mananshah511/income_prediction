@@ -257,8 +257,8 @@ class DataTransform:
 
             test_df = self.perform_preprocessing(preprocessing_obj=preprocessing_obj,is_test_data=True,dummy_df=dummy_df)
 
-            self.get_and_save_graph_cluster(train_df=train_df)
-            self.get_and_save_silhouette_score_graph(train_df=train_df)
+            #self.get_and_save_graph_cluster(train_df=train_df)
+            #self.get_and_save_silhouette_score_graph(train_df=train_df)
 
             k_means = self.save_data_based_clusters(train_df=train_df,test_df=test_df,n_clusters=NO_CLUSTER)
 

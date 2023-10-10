@@ -170,9 +170,9 @@ class ModelEvulation:
 
                 else:
 
-                    logging.info(f"rained model is not better then existing model hence not accepting it")
+                    logging.info(f"trained model is not better then existing model hence not accepting it")
 
-            model_evulation_artifact = ModelEvulationArtifact(evulation_model_file_path=cluster_model_path,
+            model_evulation_artifact = ModelEvulationArtifact(evulation_model_file_path=cluster_model_path_list,
                                                                       is_model_accepted=True)
             
             logging.info(f"model evulation artifact: {model_evulation_artifact}")
